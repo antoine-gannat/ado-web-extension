@@ -26,37 +26,10 @@ jobs:
         with:
           args: zip -qq -r -j ado-web-extension.zip src
 
-      - name: Get the version to publish
-        id: generate-semver
-        uses: K-Phoen/semver-release-action@master
+      - uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          release_branch: main
-          release_strategy: release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ steps.generate-semver.outputs.tag }}
-          release_name: Release ${{ steps.generate-semver.outputs.tag }}
-          draft: false
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
           prerelease: false
-
-      - uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./ado-web-extension.zip
-          asset_name: ado-web-extension.zip
-          asset_content_type: application/zip
-
-      - uses: eregon/publish-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          release_id: ${{ steps.create_release.outputs.id }}
+          files: |
+            ado-web-extension.zip
