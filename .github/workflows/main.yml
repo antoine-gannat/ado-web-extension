@@ -24,7 +24,7 @@ jobs:
       # Zip the content of the extension
       - uses: montudor/action-zip@v1
         with:
-          args: zip -q -r -j ado-web-extension.zip src/*
+          args: zip -qq -r -j ado-web-extension.zip src
 
       - name: Create Release
         id: create_release
@@ -46,7 +46,7 @@ jobs:
           asset_name: ado-web-extension.zip
           asset_content_type: application/zip
 
-      - name: Publish release with semevr
+      - name: Publish release with sementic versioning
         uses: K-Phoen/semver-release-action@master
         with:
           release_branch: main
