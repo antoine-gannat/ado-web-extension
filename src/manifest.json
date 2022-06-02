@@ -1,6 +1,6 @@
 {
   "name": "ADO hide multi-merge warning",
-  "description": "Extension to hide Azure dev ops 'Warning: Multiple merge bases detected. The list of commits displayed might be incomplete.' message automatically.",
+  "description": "Extension to hide Azure dev ops 'Warning: Multiple merge bases detected.' message automatically.",
   "version": "1.0",
   "manifest_version": 3,
   "content_scripts": [
